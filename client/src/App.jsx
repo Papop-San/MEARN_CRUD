@@ -13,7 +13,7 @@ import UpdateUser from './components/UpdateUser'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
    <div>
