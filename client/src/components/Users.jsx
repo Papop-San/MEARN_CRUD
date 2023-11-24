@@ -1,46 +1,54 @@
-import React, { useState } from 'react'
-import {Link} from "react-router-dom"
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function Users() {
-    const [users ,  setUser] = useState([{
-        Name: "Deaw" , Email:"Deaw@gmail.com" , Age:21
-    },{
-        Name: "Pon" , Email:"Pon@gmail.com" , Age:21
-    }])
+const Users = () => {
+  const [users, setUser] = useState([]);
+
+  // Get Function
+  useEffect(() => {
+    axios.get('http://localhost:3001/') 
+      .then(result => setUser(result.data))
+      .catch(err => console.log(err));
+  }); 
+
+
+  const handleDelete = (id)=>{
+    axios.delete("http://localhost:3001/deleteUser/"+id)
+    .then(result  => console.log(result))
+    .catch(err = console.log(err))
+  }
+
   return (
     <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
-        <div className='w-50 bg-white rounded p-3'>
-            <Link to='/create' className='btn btn-success'>Add</Link>
-            <table className='table'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Age</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {   
-                        // If you  want to send data for reture on talbe  must use return
-                        users.map((user)=>{
-                           return <tr>
-                                <td>{user.Name}</td>
-                                <td>{user.Email}</td>
-                                <td>{user.Age}</td>
-                                <td>
-                                    <Link to='/update' className='btn btn-success '>Update</Link>
-                                    <button>Del</button>
-                                </td>
-                               
-                            </tr>
-                        })
-                    }
-                </tbody>
-            </table>
-        </div>
+      <div className='w-50 bg-white rounded p-3'>
+        <Link to='/create' className='btn btn-success'>Add</Link>
+        <table className='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={index}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.age}</td>
+                <td>
+                  <Link to={`/update/${user._id}`} className='btn btn-success'>Update</Link>
+                  <button  className='btn btn-danger' onClick={(e)=>handleDelete(user._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;
