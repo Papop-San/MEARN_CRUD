@@ -27,7 +27,7 @@ function CreateUser() {
 
           <div className="mb-2">
             <label htmlFor=''>Email</label>
-            <input type='text' placeholder='Enter Email' className='form-control'
+            <input type='email' placeholder='Enter Email' className='form-control'
             onChange={(e)=> setEmail(e.target.value)}></input>
           </div>
 
@@ -37,6 +37,7 @@ function CreateUser() {
             onChange={(e)=> setAge(e.target.value)}></input>
           </div>
           <button className='btn btn-success'>Submit</button>
+
         </form>
       </div>
     </div>
