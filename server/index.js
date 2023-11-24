@@ -71,7 +71,7 @@ app.delete('/deleteUser/:id' ,(req ,res)=>{
   .then(result => res.json(result))
   .catch(err=> res.json(err))
 
-});
+})
 
 
 app.listen(3001, () =>{
