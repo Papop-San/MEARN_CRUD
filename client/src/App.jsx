@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 //Componentes
 import Users from './components/Users'
 import CreateUser from './components/CreateUser'
-import UpdateUser from './components/Users'
+import UpdateUser from './components/UpdateUser'
 
 
 
@@ -19,11 +19,10 @@ function App() {
    <div>
 
     <BrowserRouter>
-      <h1>H</h1>
       <Routes>
-        <Route path='/' element={Users}></Route>
-        <Route path='/create' element={CreateUser}></Route>
-        <Route path='/update' element={UpdateUser}></Route>
+        <Route path='/' element={<Users/>}></Route>
+        <Route path='/create' element={<CreateUser/>}></Route>
+        <Route path='/update' element={<UpdateUser/>}></Route>
       </Routes>
     </BrowserRouter>
 
